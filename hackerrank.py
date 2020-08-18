@@ -13,11 +13,21 @@ def tower(n, pos):
     moves = 0
 
     def move_disc(r):
+        if len(rods[r]) <= 0:
+            return
         nonlocal moves
         moves += 1
         x = rods[r].pop()
-        while len(rods[0]) > 0 and rods[0][-1] < x:
-            move_disc(0)
+        if len(rods[0]) > 0:
+            # for i in range(4):
+            #     if len(rods[i]) <= 0 or rods[i][-1] > x:
+            #         rods[i].append(x)
+            #         ind[x] = i
+            #         position = i
+            #         break
+            while len(rods[0]) > 0 and rods[0][-1] < x:
+                # print("DEBUG", rods[0], rods[r])
+                move_disc(0)
         for i in range(4):
             if i == r:
                 continue
@@ -31,7 +41,7 @@ def tower(n, pos):
     for i in range(len(pos)):
         rods[pos[len(pos) - i - 1] - 1].append(len(pos) - i)
         ind[len(pos) - i] = pos[len(pos) - i - 1] - 1
-    print(rods)
+    print(f"Start: {rods}")
     # for i in range(len(rods[0]) - 1):
     #     if rods[0][i] != rods[0][i + 1] + 1:
     #         move_disc(0)
@@ -39,8 +49,8 @@ def tower(n, pos):
         cur = len(pos) - i
         while ind[cur] != 0:
             move_disc(ind[cur])
-    print(rods)
     print(moves)
+    print(rods)
 
 
 if __name__ == '__main__':

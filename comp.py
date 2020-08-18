@@ -55,3 +55,7 @@ while running:
         indx = memory[pc + 1]
         print(registers[indx])
         pc += 2
+
+    # num_args = ir >> 6  # this is a right-shift operator!
+    # size_of_inst = num_args + 1
+    # pc += size_of_inst
