@@ -7,6 +7,8 @@ import re
 import sys
 
 # Complete the timeInWords function below.
+
+
 def timeInWords(h, m):
     wordmap = {
         1: "one",
@@ -49,18 +51,25 @@ def timeInWords(h, m):
         else:
             res += wordmap[m]
             if m != 15 and m != 30:
-                res += " minutes"
+                if m == 1:
+                    res += " minute"
+                else:
+                    res += " minutes"
             res += f" past {wordmap[h]}"
     else:
         if h == 12:
             res += wordmap[1]
         else:
             res += wordmap[60 - m]
-            
+
         if m != 45 and m != 30:
-            res += " minutes"
+            if m == 1:
+                res += " minute"
+            else:
+                res += " minutes"
         res += f" to {wordmap[h + 1]}"
     return res
+
 
 if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
